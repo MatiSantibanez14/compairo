@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel Admin - Compairo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>🛠 Panel Administrador</h1>
+
+  <!-- PRODUCTOS -->
+  <div class="card">
+    <h2>Crear Producto</h2>
+    <input type="text" id="nombreProducto" placeholder="Nombre producto">
+    <button onclick="crearProducto()">Crear</button>
+  </div>
+
+  <!-- SUPERMERCADOS -->
+  <div class="card">
+    <h2>Crear Supermercado</h2>
+    <input type="text" id="nombreSuper" placeholder="Nombre supermercado">
+    <input type="text" id="regionSuper" placeholder="Región">
+    <input type="text" id="comunaSuper" placeholder="Comuna">
+    <button onclick="crearSupermercado()">Crear</button>
+  </div>
+
+  <!-- PRECIOS -->
+  <div class="card">
+    <h2>Asignar Precio</h2>
+
+    <select id="productoPrecio"></select>
+    <select id="superPrecio"></select>
+
+    <input type="number" id="precio" placeholder="Precio">
+
+    <button onclick="crearPrecio()">Guardar precio</button>
+  </div>
+
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>
