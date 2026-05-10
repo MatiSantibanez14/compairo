@@ -1,38 +1,127 @@
-Compairo
+# 🛒 Compairo
 
-Descripción:
-Compairo es una aplicación web que permite comparar el costo total de una lista de compra entre distintos supermercados, con el objetivo de ayudar al usuario a tomar decisiones más económicas.
+Compairo es una aplicación web desarrollada para comparar precios de productos entre distintos supermercados, permitiendo a los usuarios crear listas de compra y visualizar la alternativa más económica según los productos seleccionados.
 
-Funcionalidades:
-- Registro e inicio de sesión de usuarios
+---
+
+# 📌 Funcionalidades
+
+## Usuarios
+- Registro de usuarios
+- Inicio y cierre de sesión
 - Creación de listas de compra
-- Agregar productos a una lista
+- Agregar y eliminar productos
 - Comparación de precios entre supermercados
-- Visualización del supermercado más económico
+- Visualización del supermercado más conveniente
 
-Tecnologías utilizadas:
-- Base de datos: MySQL
-- Backend: Node.js con Express
-- Frontend: Angular (planificado)
+## Administrador
+- Creación de productos
+- Gestión de supermercados
+- Asignación de precios
+- Administración de datos del sistema
 
-Base de datos:
-El sistema está compuesto por las siguientes tablas:
-Usuario, Rol, ListaCompra, DetalleLista, Producto, Categoria, Supermercado y Precio.
+---
 
-Estas tablas permiten almacenar la información de usuarios, productos, supermercados y los precios necesarios para realizar la comparación.
+# 🛠 Tecnologías utilizadas
 
-Cómo ejecutar la base de datos:
-1. Abrir MySQL Workbench
-2. Ejecutar el archivo script.sql para crear las tablas
-3. Ejecutar el archivo datos.sql para insertar datos de prueba
+## Frontend
+- HTML5
+- CSS3
+- JavaScript
 
-Ejemplo de consulta:
-SELECT s.nombre, SUM(p.precio * d.cantidad) AS total
-FROM DetalleLista d
-JOIN Precio p ON d.id_producto = p.id_producto
-JOIN Supermercado s ON p.id_supermercado = s.id_supermercado
-WHERE d.id_lista = 1
-GROUP BY s.nombre;
+## Backend
+- Node.js
+- Express.js
 
-Autor:
-Carlos Santibañez
+## Base de Datos
+- MySQL
+
+---
+
+# 🗂 Estructura del proyecto
+
+```plaintext
+compairo/
+│
+├── backend/
+│   ├── routes/
+│   ├── db.js
+│   ├── index.js
+│   └── datos.sql
+│
+├── frontend/
+│   ├── index.html
+│   ├── admin.html
+│   ├── app.js
+│   ├── admin.js
+│   └── style.css
+│
+└── README.md
+```
+
+---
+
+# ▶️ Cómo ejecutar el proyecto
+
+## 1. Clonar repositorio
+
+```bash
+git clone https://github.com/MatiSantibanez14/compairo.git
+```
+
+## 2. Instalar dependencias
+
+```bash
+npm install
+```
+
+## 3. Configurar variables de entorno
+
+Crear archivo `.env` en backend:
+
+```env
+PORT=3000
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=Asdf1337.
+DB_NAME=compairo
+```
+
+## 4. Importar base de datos
+
+Ejecutar archivo:
+
+```plaintext
+datos.sql
+```
+
+en MySQL Workbench o phpMyAdmin.
+
+## 5. Iniciar servidor backend
+
+```bash
+node index.js
+```
+
+## 6. Ejecutar frontend
+
+Abrir `index.html` con Live Server en Visual Studio Code.
+
+---
+
+# 📸 Capturas
+
+El sistema incluye:
+- Registro de usuarios
+- Inicio de sesión
+- Gestión de listas
+- Comparación de precios
+- Panel administrador
+
+---
+
+# 👨‍💻 Autor
+
+Matías Santibáñez
+
+Proyecto desarrollado para la asignatura de Proyecto de Titulo.
