@@ -20,4 +20,30 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.get('/', async (req, res) => {
+
+  try {
+
+    const [rows] = await db.query(`
+      SELECT 
+        p.nombre AS producto,
+        s.nombre AS supermercado,
+        pr.precio
+      FROM precio pr
+      JOIN producto p ON pr.id_producto = p.id_producto
+      JOIN supermercado s ON pr.id_supermercado = s.id_supermercado
+    `);
+
+    res.json(rows);
+
+  } catch (error) {
+
+    console.error(error);
+
+    res.status(500).json({
+      mensaje: 'Error obteniendo precios'
+    });
+  }
+});
+
 module.exports = router;

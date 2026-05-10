@@ -8,36 +8,57 @@
 <body>
 
 <div class="container">
+  <div class="topbar">
+
   <h1>🛠 Panel Administrador</h1>
 
+  <button onclick="logout()" class="btn-logout">
+    Cerrar sesión
+  </button>
+
+</div>
   <!-- PRODUCTOS -->
   <div class="card">
     <h2>Crear Producto</h2>
     <input type="text" id="nombreProducto" placeholder="Nombre producto">
+    <select id="categoriaProducto"></select>
     <button onclick="crearProducto()">Crear</button>
+    <ul id="listaProductosAdmin"></ul>
   </div>
 
   <!-- SUPERMERCADOS -->
   <div class="card">
     <h2>Crear Supermercado</h2>
-    <input type="text" id="nombreSuper" placeholder="Nombre supermercado">
-    <input type="text" id="regionSuper" placeholder="Región">
-    <input type="text" id="comunaSuper" placeholder="Comuna">
+    <select id="nombreSuper">
+      <option value="Lider">Lider</option>
+      <option value="Jumbo">Jumbo</option>
+      <option value="Tottus">Tottus</option>
+    </select>
+
+<select id="regionSuper">
+  <option value="Metropolitana">
+    Región Metropolitana
+  </option>
+</select>
+
+<select id="comunaSuper"></select>
     <button onclick="crearSupermercado()">Crear</button>
+    <ul id="listaSupermercadosAdmin"></ul>
   </div>
 
   <!-- PRECIOS -->
   <div class="card">
-    <h2>Asignar Precio</h2>
+  <h2>Asignar Precio</h2>
 
-    <select id="productoPrecio"></select>
-    <select id="superPrecio"></select>
+  <select id="productoPrecio"></select>
+  <select id="superPrecio"></select>
 
-    <input type="number" id="precio" placeholder="Precio">
+  <input type="number" id="precio" placeholder="Precio">
 
-    <button onclick="crearPrecio()">Guardar precio</button>
-  </div>
+  <button onclick="crearPrecio()">Guardar precio</button>
 
+  <h3>Precios registrados</h3>
+  <ul id="listaPreciosAdmin"></ul>
 </div>
 
 <script src="admin.js"></script>

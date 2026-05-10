@@ -3,28 +3,63 @@ const router = express.Router();
 const db = require('../db');
 
 router.get('/comparar/:id_lista', async (req, res) => {
+
   try {
+
     const { id_lista } = req.params;
 
+    // verificar productos sin precio
+    const [sinPrecio] = await db.query(
+      `
+      SELECT p.nombre
+      FROM DetalleLista dl
+      JOIN Producto p
+        ON dl.id_producto = p.id_producto
+      LEFT JOIN Precio pr
+        ON p.id_producto = pr.id_producto
+      WHERE dl.id_lista = ?
+      AND pr.id_precio IS NULL
+      `,
+      [id_lista]
+    );
+
+    // si hay productos sin precio
+    if (sinPrecio.length > 0) {
+
+      return res.status(400).json({
+        mensaje:
+          'Hay productos sin precios registrados'
+      });
+    }
+
+    // comparación normal
     const query = `
       SELECT 
         s.nombre AS supermercado,
         SUM(p.precio * dl.cantidad) AS total
       FROM ListaCompra lc
-      JOIN DetalleLista dl ON lc.id_lista = dl.id_lista
-      JOIN Precio p ON dl.id_producto = p.id_producto
-      JOIN Supermercado s ON p.id_supermercado = s.id_supermercado
+      JOIN DetalleLista dl
+        ON lc.id_lista = dl.id_lista
+      JOIN Precio p
+        ON dl.id_producto = p.id_producto
+      JOIN Supermercado s
+        ON p.id_supermercado = s.id_supermercado
       WHERE lc.id_lista = ?
       GROUP BY s.nombre
     `;
 
-    const [rows] = await db.query(query, [id_lista]);
+    const [rows] =
+      await db.query(query, [id_lista]);
 
     res.json(rows);
 
   } catch (error) {
+
     console.error('ERROR COMPARAR:', error);
-    res.status(500).json({ mensaje: 'Error al comparar precios' });
+
+    res.status(500).json({
+      mensaje: 'Error al comparar precios'
+    });
   }
 });
 
@@ -108,6 +143,34 @@ router.get('/detalle/:id', async (req, res) => {
   } catch (error) {
     console.error('ERROR DETALLE:', error);
     res.status(500).json({ mensaje: 'Error obteniendo detalle' });
+  }
+});
+
+router.delete('/detalle/:id_lista/:nombre', async (req, res) => {
+  try {
+
+    const { id_lista, nombre } = req.params;
+
+    const sql = `
+      DELETE dl
+      FROM DetalleLista dl
+      JOIN Producto p ON dl.id_producto = p.id_producto
+      WHERE dl.id_lista = ? AND p.nombre = ?
+    `;
+
+    await db.query(sql, [id_lista, nombre]);
+
+    res.json({
+      mensaje: 'Producto eliminado correctamente'
+    });
+
+  } catch (error) {
+
+    console.error('ERROR ELIMINAR PRODUCTO:', error);
+
+    res.status(500).json({
+      mensaje: 'Error eliminando producto'
+    });
   }
 });
 

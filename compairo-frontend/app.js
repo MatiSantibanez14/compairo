@@ -1,8 +1,18 @@
 let listaActual = null;
 let productosGlobal = [];
 const regionesComunas = {
-  RM: ["Santiago", "Providencia", "Maipú", "Las Condes"],
-  V: ["Valparaíso", "Viña del Mar", "Quilpué"]
+  RM: [
+    "San Bernardo",
+    "Maipú",
+    "Santiago",
+    "Puente Alto",
+    "La Florida",
+    "Providencia",
+    "Ñuñoa",
+    "Las Condes",
+    "San Miguel",
+    "Estación Central"
+  ]
 };
 
 console.log("app.js cargado");
@@ -181,19 +191,29 @@ function agregarProducto() {
 
 // COMPARAR PRECIOS + AHORRO
 function comparar() {
+
   if (!listaActual) {
     alert('Primero debes crear una lista');
     return;
   }
 
   fetch(`http://localhost:3000/api/lista/comparar/${listaActual}`)
-    .then(res => res.json())
-    .then(data => {
+
+    .then(async res => {
+
+      const data = await res.json();
+
+      // validar errores
+      if (!res.ok) {
+        alert(data.mensaje);
+        return;
+      }
 
       const tabla = document.getElementById('resultado');
       tabla.innerHTML = '';
 
       const precios = data.map(item => Number(item.total));
+
       const minimo = Math.min(...precios);
       const maximo = Math.max(...precios);
 
@@ -204,20 +224,27 @@ function comparar() {
       });
 
       data.forEach(item => {
+
         const fila = document.createElement('tr');
 
         const colSuper = document.createElement('td');
         colSuper.innerText = item.supermercado;
 
         const colTotal = document.createElement('td');
-        colTotal.innerText = formatoPeso.format(item.total);
+        colTotal.innerText =
+          formatoPeso.format(item.total);
 
-        const colExtra = document.createElement('td');
+        const colExtra =
+          document.createElement('td');
 
         if (Number(item.total) === minimo) {
+
           fila.style.backgroundColor = '#d4edda';
+
           colExtra.innerText = '🏆 Más barato';
+
         } else {
+
           colExtra.innerText = '-';
         }
 
@@ -232,9 +259,14 @@ function comparar() {
       const ahorro = maximo - minimo;
 
       document.getElementById('ahorro').innerText =
-        '💰 Puedes ahorrar: ' + formatoPeso.format(ahorro);
+        '💰 Puedes ahorrar: ' +
+        formatoPeso.format(ahorro);
+
     })
-    .catch(err => console.error('Error comparando:', err));
+
+    .catch(err => {
+      console.error('Error comparando:', err);
+    });
 }
 
 // LOGOUT
@@ -383,11 +415,37 @@ function cargarProductosLista(idLista) {
 
       data.forEach(item => {
         const li = document.createElement('li');
-        li.innerText = `${item.nombre} - Cantidad: ${item.cantidad}`;
+
+        li.innerHTML = `
+          ${item.nombre} - Cantidad: ${item.cantidad}
+          <button onclick="eliminarProducto('${item.nombre}')">
+            Eliminar
+          </button>
+        `;
+
         lista.appendChild(li);
       });
     })
     .catch(err => console.error('Error cargando productos:', err));
+}
+
+function eliminarProducto(nombreProducto) {
+
+  fetch(`http://localhost:3000/api/lista/detalle/${listaActual}/${nombreProducto}`, {
+    method: 'DELETE'
+  })
+    .then(res => res.json())
+    .then(data => {
+
+      alert(data.mensaje);
+
+      // recargar productos de la lista
+      cargarProductosLista(listaActual);
+
+    })
+    .catch(err => {
+      console.error('Error eliminando producto:', err);
+    });
 }
 
 function cargarComunas() {

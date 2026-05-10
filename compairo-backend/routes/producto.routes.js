@@ -21,4 +21,32 @@ router.get('/', async (req, res) => {
   }
 });
 
+// crear producto
+router.post('/', async (req, res) => {
+
+  try {
+
+    const { nombre, id_categoria } = req.body;
+
+    await db.query(
+      `
+      INSERT INTO Producto (nombre, id_categoria)
+      VALUES (?, ?)
+      `,
+      [nombre, id_categoria]
+    );
+
+    res.json({
+      mensaje: 'Producto creado correctamente'
+    });
+
+  } catch (error) {
+
+    console.error('ERROR CREAR PRODUCTO:', error);
+
+    res.status(500).json({
+      mensaje: 'Error creando producto'
+    });
+  }
+});
 module.exports = router;

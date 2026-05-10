@@ -7,6 +7,7 @@ const precioRoutes = require('./routes/precio.routes');
 const productoRoutes = require('./routes/producto.routes');
 const listaRoutes = require('./routes/lista.routes');
 const authRoutes = require('./routes/auth.routes');
+const categoriaRoutes = require('./routes/categoria.routes');
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use('/api/precios', precioRoutes);
 app.use('/api/productos', productoRoutes);
 app.use('/api/lista', listaRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/categorias', categoriaRoutes);
 
 app.get('/', (req, res) => {
   res.send('Servidor funcionando');
