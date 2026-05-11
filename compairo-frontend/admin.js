@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!usuario || usuario.id_rol != 1) {
     alert('Acceso denegado');
-    window.location.href = 'index.html';
+    window.location.href = '';
     return;
   }
 
@@ -35,7 +35,7 @@ function crearProducto() {
   const id_categoria =
   document.getElementById('categoriaProducto').value;
 
-  fetch('https://compairo-backend.onrender.com/api/productos', {
+  fetch('http://localhost:3000/api/productos', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -64,7 +64,7 @@ function crearSupermercado() {
   const comuna =
     document.getElementById('comunaSuper').value;
 
-  fetch('https://compairo-backend.onrender.com/api/supermercados', {
+  fetch('http://localhost:3000/api/supermercados', {
 
     method: 'POST',
 
@@ -109,7 +109,7 @@ function crearPrecio() {
   const id_supermercado = document.getElementById('superPrecio').value;
   const precio = document.getElementById('precio').value;
 
-  fetch('https://compairo-backend.onrender.com/api/precios', {
+  fetch('http://localhost:3000/api/precios', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -133,7 +133,7 @@ function crearPrecio() {
 // CARGAR PRECIOS
 function cargarPrecios() {
 
-  fetch('https://compairo-backend.onrender.com/api/precios')
+  fetch('http://localhost:3000/api/precios')
     .then(res => res.json())
     .then(data => {
 
@@ -159,7 +159,7 @@ function cargarPrecios() {
 
 // CARGAR PRODUCTOS
 function cargarProductos() {
-  fetch('https://compairo-backend.onrender.com/api/productos')
+  fetch('http://localhost:3000/api/productos')
     .then(res => res.json())
     .then(data => {
       const select = document.getElementById('productoPrecio');
@@ -182,7 +182,7 @@ function cargarProductos() {
 // CARGAR SUPERMERCADOS
 function cargarSupermercados() {
 
-  fetch('https://compairo-backend.onrender.com/api/supermercados')
+  fetch('http://localhost:3000/api/supermercados')
 
     .then(res => res.json())
 
@@ -218,7 +218,7 @@ function cargarSupermercados() {
 // CARGAR CATEGORIAS
 function cargarCategorias() {
 
-  fetch('https://compairo-backend.onrender.com/api/categorias')
+  fetch('http://localhost:3000/api/categorias')
     .then(res => res.json())
     .then(data => {
 

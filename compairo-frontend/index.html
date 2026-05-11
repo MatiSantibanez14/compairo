@@ -7,92 +7,53 @@
 </head>
 <body>
 
-<!-- TOPBAR -->
-<div class="topbar"> 
-  <span id="usuarioNombre"></span>
-
-  <div class="topbar-right">
-    <select id="region">
-      <option value="">Selecciona región</option>
-     <option value="RM">Región Metropolitana</option>
-    </select>
-
-<select id="comuna">
-  <option value="">Selecciona comuna</option>
-</select>
-
-    <button onclick="logout()">Cerrar sesión</button> 
-  </div>
-</div>
-
-<!-- LAYOUT -->
-<div class="layout">
-
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-    <h2>📋 Tus listas</h2>
-
-    <div id="misListas"></div>
-
-    <button class="btn-crear" onclick="nuevaLista()">
-      + Crear nueva lista
-    </button>
+  <!-- barra superior -->
+  <div class="topbar">
+    <button onclick="irLogin()">Iniciar sesión</button>
+    <button onclick="irRegistro()">Registrarse</button>
   </div>
 
-  <!-- CONTENIDO PRINCIPAL -->
-  <div class="main">
-
-    <h1 id="bienvenida">🛒 Compairo</h1>
-
-    <!-- Crear lista -->
-    <div class="card">
-      <h2>Crear Lista</h2>
-      <input type="text" id="nombreLista" placeholder="Nombre de la lista">
-      <button onclick="crearLista()">Crear</button>
-      <p id="listaId"></p>
-    </div>
-
-    <!-- Agregar productos (ACTUALIZADO) -->
-    <div class="card">
-      <h2>Agregar Producto</h2>
-
-      <!-- NUEVO BUSCADOR -->
-      <input type="text" id="buscadorProducto" placeholder="Buscar producto...">
-
-      <select id="productoId"></select>
-
-      <input type="number" id="cantidad" placeholder="Cantidad">
-      <button onclick="agregarProducto()">Agregar</button>
-    </div>
-
-    <!-- Productos de la lista -->
-    <div class="card">
-      <h2>🛒 Productos de la lista</h2>
-      <ul id="productosLista"></ul>
-    </div>
-
-    <!-- Comparar -->
-    <div class="card">
-      <h2>Comparar Precios</h2>
-      <button onclick="comparar()">Comparar</button>
-      <p id="ahorro"></p>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Supermercado</th>
-            <th>Total</th>
-            <th>Mejor opción</th>
-          </tr>
-        </thead>
-        <tbody id="resultado"></tbody>
-      </table>
-    </div>
-
+  <!-- Splash -->
+  <div id="splash">
+    <img src="img/logo.png" class="logo-animado">
   </div>
 
-</div>
+  <!-- Principal -->
+  <div id="main" class="hidden">
+    <div class="container">
+      <h1>Bienvenido a Compairo 🛒</h1>
 
-<script src="app.js"></script>
+      <button onclick="irApp()">Entrar a la app</button>
+    </div>
+  </div>
+
+  <script>
+    // splash → main
+    window.onload = function() {
+      setTimeout(() => {
+        document.getElementById('splash').style.display = 'none';
+        document.getElementById('main').classList.remove('hidden');
+      }, 2000);
+    };
+
+    function irLogin() {
+      window.location.href = "login.html";
+    }
+
+    function irRegistro() {
+      window.location.href = "registro.html";
+    }
+
+    function irApp() {
+      const usuario = localStorage.getItem('usuario');
+
+      if (usuario) {
+        window.location.href = "";
+      } else {
+        window.location.href = "login.html";
+      }
+    }
+  </script>
+
 </body>
 </html>

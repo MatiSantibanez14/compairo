@@ -21,7 +21,7 @@ console.log("app.js cargado");
 document.addEventListener('DOMContentLoaded', function () {
 
   // SOLO para index
-  if (window.location.href.includes('index.html')) {
+  if (window.location.href.includes('login.html')) {
 
     const usuario = JSON.parse(localStorage.getItem('usuario'));
 
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // CARGAR PRODUCTOS EN SELECT
 function cargarProductos() {
-  fetch('https://compairo-backend.onrender.com/api/productos')
+  fetch('http://localhost:3000/api/productos')
     .then(res => res.json())
     .then(data => {
 
@@ -118,7 +118,7 @@ function crearLista() {
     return;
   }
 
-  fetch('https://compairo-backend.onrender.com/api/lista', {
+  fetch('http://localhost:3000/api/lista', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -157,7 +157,7 @@ function agregarProducto() {
   const producto = document.getElementById('productoId').value;
   const cantidad = document.getElementById('cantidad').value;
 
-  fetch('https://compairo-backend.onrender.com/api/lista/detalle', {
+  fetch('http://localhost:3000/api/lista/detalle', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -197,7 +197,7 @@ function comparar() {
     return;
   }
 
-  fetch(`https://compairo-backend.onrender.com/api/lista/comparar/${listaActual}`)
+  fetch(`http://localhost:3000/api/lista/comparar/${listaActual}`)
 
     .then(async res => {
 
@@ -280,7 +280,7 @@ window.login = function () {
   const correo = document.getElementById('correo').value;
   const contrasena = document.getElementById('contrasena').value;
 
-  fetch('https://compairo-backend.onrender.com/api/auth/login', {
+  fetch('http://localhost:3000/api/auth/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -306,7 +306,7 @@ window.login = function () {
           if (data.usuario.id_rol == 1) {
             window.location.href = 'admin.html'; // 👈 admin
           } else {
-            window.location.href = 'index.html'; // 👈 usuario normal
+            window.location.href = ''; // 👈 usuario normal
           }
         }, 1000);
 
@@ -325,7 +325,7 @@ window.registro = function () {
   const correo = document.getElementById('correo').value;
   const contrasena = document.getElementById('contrasena').value;
 
-  fetch('https://compairo-backend.onrender.com/api/auth/registro', {
+  fetch('http://localhost:3000/api/auth/registro', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -350,7 +350,7 @@ window.registro = function () {
 function cargarListas() {
   const usuario = JSON.parse(localStorage.getItem('usuario'));
 
-  fetch(`https://compairo-backend.onrender.com/api/lista/usuario/${usuario.id_usuario}`)
+  fetch(`http://localhost:3000/api/lista/usuario/${usuario.id_usuario}`)
     .then(res => res.json())
     .then(data => {
       const contenedor = document.getElementById('misListas');
@@ -389,7 +389,7 @@ function nuevaLista() {
 
   const usuario = JSON.parse(localStorage.getItem('usuario'));
 
-  fetch('https://compairo-backend.onrender.com/api/lista', {
+  fetch('http://localhost:3000/api/lista', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -407,7 +407,7 @@ function nuevaLista() {
 }
 
 function cargarProductosLista(idLista) {
-  fetch(`https://compairo-backend.onrender.com/api/lista/detalle/${idLista}`)
+  fetch(`http://localhost:3000/api/lista/detalle/${idLista}`)
     .then(res => res.json())
     .then(data => {
       const lista = document.getElementById('productosLista');
@@ -431,7 +431,7 @@ function cargarProductosLista(idLista) {
 
 function eliminarProducto(nombreProducto) {
 
-  fetch(`https://compairo-backend.onrender.com/api/lista/detalle/${listaActual}/${nombreProducto}`, {
+  fetch(`http://localhost:3000/api/lista/detalle/${listaActual}/${nombreProducto}`, {
     method: 'DELETE'
   })
     .then(res => res.json())
