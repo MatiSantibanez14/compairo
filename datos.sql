@@ -34,7 +34,7 @@ INSERT INTO Categoria (nombre) VALUES
 INSERT INTO Producto (nombre, id_categoria) VALUES
 ('Leche', 1),
 ('Arroz', 2),
-('Bebida isotónica', 3);
+('Bebida isotónica', 3),
 ('Yogurt', 1),
 ('Queso', 1),
 ('Fideos', 2),
@@ -56,7 +56,7 @@ INSERT INTO Producto (nombre, id_categoria) VALUES
 INSERT INTO Supermercado (nombre, region, comuna) VALUES
 ('Lider', 'Metropolitana', 'San Bernardo'),
 ('Jumbo', 'Metropolitana', 'La Florida'),
-('Tottus', 'Metropolitana', 'Puente Alto');
+('Tottus', 'Metropolitana', 'Puente Alto'),
 
 ('Lider', 'Metropolitana', 'Maipú'),
 ('Lider', 'Metropolitana', 'Santiago'),
@@ -84,7 +84,7 @@ INSERT INTO Precio (id_producto, id_supermercado, precio, fecha_actualizacion) V
 
 (3, 1, 1500, '2026-04-15'),
 (3, 2, 1800, '2026-04-15'),
-(3, 3, 1550, '2026-04-15');
+(3, 3, 1550, '2026-04-15'),
 
 (4, 1, 2500, '2026-04-15'),
 (4, 2, 2200, '2026-04-15'),
