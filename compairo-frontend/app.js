@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const usuario = JSON.parse(localStorage.getItem('usuario'));
 
     if (!usuario) {
-      window.location.href = 'login.html';
+      window.location.href = 'app.html';
       return;
     }
 
