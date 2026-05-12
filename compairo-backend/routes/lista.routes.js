@@ -37,7 +37,7 @@ router.get('/comparar/:id_lista', async (req, res) => {
       SELECT 
         s.nombre AS supermercado,
         SUM(p.precio * dl.cantidad) AS total
-      FROM ListaCompra lc
+      FROM listacompra lc
       JOIN DetalleLista dl
         ON lc.id_lista = dl.id_lista
       JOIN Precio p
@@ -111,7 +111,7 @@ router.get('/usuario/:id', async (req, res) => {
 
     const sql = `
       SELECT id_lista, nombre_lista
-      FROM ListaCompra
+      FROM listacompra
       WHERE id_usuario = ?
     `;
 
