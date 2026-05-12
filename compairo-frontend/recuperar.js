@@ -6,7 +6,7 @@ function recuperar() {
     return;
   }
 
-  fetch('http://https://compairo-backend.onrender.com/api/auth/recuperar', {
+  fetch('https://compairo-backend.onrender.com/api/auth/recuperar', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

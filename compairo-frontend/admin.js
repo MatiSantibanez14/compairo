@@ -35,7 +35,7 @@ function crearProducto() {
   const id_categoria =
   document.getElementById('categoriaProducto').value;
 
-  fetch('http://https://compairo-backend.onrender.com/api/productos', {
+  fetch('https://compairo-backend.onrender.com/api/productos', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -64,7 +64,7 @@ function crearSupermercado() {
   const comuna =
     document.getElementById('comunaSuper').value;
 
-  fetch('http://https://compairo-backend.onrender.com/api/supermercados', {
+  fetch('https://compairo-backend.onrender.com/api/supermercados', {
 
     method: 'POST',
 
@@ -109,7 +109,7 @@ function crearPrecio() {
   const id_supermercado = document.getElementById('superPrecio').value;
   const precio = document.getElementById('precio').value;
 
-  fetch('http://https://compairo-backend.onrender.com/api/precios', {
+  fetch('https://compairo-backend.onrender.com/api/precios', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -133,7 +133,7 @@ function crearPrecio() {
 // CARGAR PRECIOS
 function cargarPrecios() {
 
-  fetch('http://https://compairo-backend.onrender.com/api/precios')
+  fetch('https://compairo-backend.onrender.com/api/precios')
     .then(res => res.json())
     .then(data => {
 
@@ -159,7 +159,7 @@ function cargarPrecios() {
 
 // CARGAR PRODUCTOS
 function cargarProductos() {
-  fetch('http://https://compairo-backend.onrender.com/api/productos')
+  fetch('https://compairo-backend.onrender.com/api/productos')
     .then(res => res.json())
     .then(data => {
       const select = document.getElementById('productoPrecio');
@@ -182,7 +182,7 @@ function cargarProductos() {
 // CARGAR SUPERMERCADOS
 function cargarSupermercados() {
 
-  fetch('http://https://compairo-backend.onrender.com/api/supermercados')
+  fetch('https://compairo-backend.onrender.com/api/supermercados')
 
     .then(res => res.json())
 
@@ -218,7 +218,7 @@ function cargarSupermercados() {
 // CARGAR CATEGORIAS
 function cargarCategorias() {
 
-  fetch('http://https://compairo-backend.onrender.com/api/categorias')
+  fetch('https://compairo-backend.onrender.com/api/categorias')
     .then(res => res.json())
     .then(data => {
 
