@@ -145,7 +145,7 @@ INSERT INTO Precio (id_producto, id_supermercado, precio, fecha_actualizacion) V
 -- ======================
 -- LISTA COMPRA
 -- ======================
-INSERT INTO ListaCompra (id_usuario, nombre_lista, fecha_creacion) VALUES
+INSERT INTO listacompra (id_usuario, nombre_lista, fecha_creacion) VALUES
 (1, 'Compra semanal', '2026-04-15');
 
 -- ======================

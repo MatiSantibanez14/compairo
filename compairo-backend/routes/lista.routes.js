@@ -12,10 +12,10 @@ router.get('/comparar/:id_lista', async (req, res) => {
     const [sinPrecio] = await db.query(
       `
       SELECT p.nombre
-      FROM DetalleLista dl
-      JOIN Producto p
+      FROM detallelista dl
+      JOIN producto p
         ON dl.id_producto = p.id_producto
-      LEFT JOIN Precio pr
+      LEFT JOIN precio pr
         ON p.id_producto = pr.id_producto
       WHERE dl.id_lista = ?
       AND pr.id_precio IS NULL
@@ -38,11 +38,11 @@ router.get('/comparar/:id_lista', async (req, res) => {
         s.nombre AS supermercado,
         SUM(p.precio * dl.cantidad) AS total
       FROM listacompra lc
-      JOIN DetalleLista dl
+      JOIN detallelista dl
         ON lc.id_lista = dl.id_lista
-      JOIN Precio p
+      JOIN precio p
         ON dl.id_producto = p.id_producto
-      JOIN Supermercado s
+      JOIN supermercado s
         ON p.id_supermercado = s.id_supermercado
       WHERE lc.id_lista = ?
       GROUP BY s.nombre
@@ -68,7 +68,7 @@ router.post('/', (req, res) => {
   const { id_usuario, nombre_lista } = req.body;
 
   const query = `
-    INSERT INTO ListaCompra (id_usuario, nombre_lista, fecha_creacion)
+    INSERT INTO listacompra (id_usuario, nombre_lista, fecha_creacion)
     VALUES (?, ?, NOW())
   `;
 
@@ -91,7 +91,7 @@ router.post('/detalle', async (req, res) => {
     const { id_lista, id_producto, cantidad } = req.body;
 
     const query = `
-      INSERT INTO DetalleLista (id_lista, id_producto, cantidad)
+      INSERT INTO detallelista (id_lista, id_producto, cantidad)
       VALUES (?, ?, ?)
     `;
 
@@ -131,8 +131,8 @@ router.get('/detalle/:id', async (req, res) => {
 
     const sql = `
       SELECT p.nombre, dl.cantidad
-      FROM DetalleLista dl
-      JOIN Producto p ON dl.id_producto = p.id_producto
+      FROM detallelista dl
+      JOIN producto p ON dl.id_producto = p.id_producto
       WHERE dl.id_lista = ?
     `;
 
@@ -153,8 +153,8 @@ router.delete('/detalle/:id_lista/:nombre', async (req, res) => {
 
     const sql = `
       DELETE dl
-      FROM DetalleLista dl
-      JOIN Producto p ON dl.id_producto = p.id_producto
+      FROM detallelista dl
+      JOIN producto p ON dl.id_producto = p.id_producto
       WHERE dl.id_lista = ? AND p.nombre = ?
     `;
 

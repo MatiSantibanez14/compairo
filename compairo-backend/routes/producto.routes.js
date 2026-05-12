@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
     const query = `
       SELECT p.id_producto, p.nombre, c.nombre AS categoria
       FROM producto p
-      JOIN Categoria c ON p.id_categoria = c.id_categoria
+      JOIN categoria c ON p.id_categoria = c.id_categoria
     `;
 
     const [rows] = await db.query(query);

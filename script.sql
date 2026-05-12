@@ -72,7 +72,7 @@ CREATE TABLE Precio (
 -- ======================
 -- TABLA LISTA COMPRA
 -- ======================
-CREATE TABLE ListaCompra (
+CREATE TABLE listacompra (
     id_lista INT AUTO_INCREMENT PRIMARY KEY,
     id_usuario INT,
     nombre_lista VARCHAR(100) NOT NULL,
@@ -88,6 +88,6 @@ CREATE TABLE DetalleLista (
     id_lista INT,
     id_producto INT,
     cantidad INT NOT NULL,
-    FOREIGN KEY (id_lista) REFERENCES ListaCompra(id_lista),
+    FOREIGN KEY (id_lista) REFERENCES listacompra(id_lista),
     FOREIGN KEY (id_producto) REFERENCES Producto(id_producto)
 );

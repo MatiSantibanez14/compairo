@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
   try {
 
     const [rows] = await db.query(`
-      SELECT * FROM Categoria
+      SELECT * FROM categoria
     `);
 
     res.json(rows);
