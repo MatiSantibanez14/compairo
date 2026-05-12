@@ -353,6 +353,12 @@ function cargarListas() {
   fetch(`https://compairo-backend.onrender.com/api/lista/usuario/${usuario.id_usuario}`)
     .then(res => res.json())
     .then(data => {
+
+      if (!Array.isArray(data)) {
+        console.error('Error backend listas:', data);
+        return;
+      }
+
       const contenedor = document.getElementById('misListas');
       contenedor.innerHTML = '';
 
@@ -407,13 +413,21 @@ function nuevaLista() {
 }
 
 function cargarProductosLista(idLista) {
+
   fetch(`https://compairo-backend.onrender.com/api/lista/detalle/${idLista}`)
     .then(res => res.json())
     .then(data => {
+
+      if (!Array.isArray(data)) {
+        console.error('Error backend productos:', data);
+        return;
+      }
+
       const lista = document.getElementById('productosLista');
       lista.innerHTML = '';
 
       data.forEach(item => {
+
         const li = document.createElement('li');
 
         li.innerHTML = `
