@@ -272,7 +272,7 @@ function comparar() {
 // LOGOUT
 window.logout = function () {
   localStorage.removeItem('usuario');
-  window.location.href = 'principal.html';
+  window.location.href = 'index.html';
 };
 
 // LOGIN
