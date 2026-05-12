@@ -4,6 +4,22 @@ Compairo es una aplicación web desarrollada para comparar precios de productos 
 
 ---
 
+# 🌐 Aplicación desplegada
+
+https://compairo-supermercados.vercel.app/
+
+---
+
+## 👤 Credenciales de prueba
+
+Administrador:
+- Correo: cmsantibanez1497@gmail.com
+- Contraseña: admin123
+
+Usuario:
+- Correo: m.santibanezag1997@gmail.com
+- Contraseña: 13677
+
 # 📌 Funcionalidades
 
 ## Usuarios
