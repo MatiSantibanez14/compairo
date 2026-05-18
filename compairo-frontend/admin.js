@@ -198,33 +198,28 @@ fetch('https://compairo-backend.onrender.com/api/supermercados')
 
   lista.innerHTML = '';
 
-  // evitar repetidos
-  const nombresUnicos = [];
-
   data.forEach(s => {
 
-    if (!nombresUnicos.includes(s.nombre)) {
+    const option =
+      document.createElement('option');
 
-      nombresUnicos.push(s.nombre);
+    option.value = s.id_supermercado;
 
-      const option =
-        document.createElement('option');
+    option.text =
+      `${s.nombre} - ${s.comuna}`;
 
-      option.value = s.id_supermercado;
+    select.appendChild(option);
 
-      option.text = s.nombre;
+    const li =
+      document.createElement('li');
 
-      select.appendChild(option);
+    li.innerText =
+      `${s.nombre} - ${s.comuna}`;
 
-      // mostrar abajo
-      const li = document.createElement('li');
+    lista.appendChild(li);
 
-      li.innerText =
-        `${s.nombre} - ${s.comuna}`;
-
-      lista.appendChild(li);
-    }
   });
+
 });
 
 }
