@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
 
     await db.query(
       `
-      INSERT INTO Producto (nombre, id_categoria)
+      INSERT INTO producto (nombre, id_categoria)
       VALUES (?, ?)
       `,
       [nombre, id_categoria]
