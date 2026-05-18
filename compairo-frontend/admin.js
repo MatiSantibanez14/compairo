@@ -182,37 +182,51 @@ function cargarProductos() {
 // CARGAR SUPERMERCADOS
 function cargarSupermercados() {
 
-  fetch('https://compairo-backend.onrender.com/api/supermercados')
+fetch('https://compairo-backend.onrender.com/api/supermercados')
 
-    .then(res => res.json())
+.then(res => res.json())
 
-    .then(data => {
+.then(data => {
 
-      const select =
-        document.getElementById('superPrecio');
+  const select =
+    document.getElementById('superPrecio');
 
-      select.innerHTML = '';
+  select.innerHTML = '';
 
-      // evitar repetidos
-      const nombresUnicos = [];
+  const lista =
+    document.getElementById('listaSupermercadosAdmin');
 
-      data.forEach(s => {
+  lista.innerHTML = '';
 
-        if (!nombresUnicos.includes(s.nombre)) {
+  // evitar repetidos
+  const nombresUnicos = [];
 
-          nombresUnicos.push(s.nombre);
+  data.forEach(s => {
 
-          const option =
-            document.createElement('option');
+    if (!nombresUnicos.includes(s.nombre)) {
 
-          option.value = s.id_supermercado;
+      nombresUnicos.push(s.nombre);
 
-          option.text = s.nombre;
+      const option =
+        document.createElement('option');
 
-          select.appendChild(option);
-        }
-      });
-    });
+      option.value = s.id_supermercado;
+
+      option.text = s.nombre;
+
+      select.appendChild(option);
+
+      // mostrar abajo
+      const li = document.createElement('li');
+
+      li.innerText =
+        `${s.nombre} - ${s.comuna}`;
+
+      lista.appendChild(li);
+    }
+  });
+});
+
 }
 
 // CARGAR CATEGORIAS
