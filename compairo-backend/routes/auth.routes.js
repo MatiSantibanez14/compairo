@@ -35,7 +35,7 @@ router.post('/registro', async (req, res) => {
 
   try {
     await db.query(
-      'INSERT INTO Usuario (nombre, correo, contrasena) VALUES (?, ?, ?)',
+      'INSERT INTO usuario (nombre, correo, contrasena) VALUES (?, ?, ?)',
       [nombre, correo, contrasena]
     );
 
