@@ -24,13 +24,17 @@ router.get('/comparar/:id_lista', async (req, res) => {
     );
 
     // si hay productos sin precio
+    // si hay productos sin precio
     if (sinPrecio.length > 0) {
 
-      return res.status(400).json({
-        mensaje:
-          'Hay productos sin precios registrados'
-      });
-    }
+    const productosFaltantes =
+    sinPrecio.map(p => p.nombre).join(', ');
+
+    return res.status(400).json({
+    mensaje:
+      `Los siguientes productos no tienen precios registrados: ${productosFaltantes}`
+    });
+  }
 
     // comparación normal
     const query = `
